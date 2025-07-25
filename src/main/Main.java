@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         Connection conn = DBConnection.getConnection();
         if (conn != null) {
-            System.out.println("Database Connected Successfully!");
+            System.out.println("Database sonnected successfully!");
         } else {
-            System.out.println("Connection Failed");
+            System.out.println("Connection failed to connect");
         }
     }
 }
