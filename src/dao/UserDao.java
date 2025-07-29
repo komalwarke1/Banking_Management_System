@@ -45,7 +45,7 @@ public class UserDao {
         User user=null;
         try{
             Connection conn=DBConnection.getConnection();
-            String sql="SELECT * FROM USER WHERE USERNAME=? AND PASSWORD=?";
+            String sql="SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?";
             PreparedStatement pre=conn.prepareStatement(sql);
             pre.setString(1,username);
             pre.setString(2,password);
