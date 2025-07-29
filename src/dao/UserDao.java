@@ -41,5 +41,52 @@ public class UserDao {
             return true;
         }
     }
+    public static User Login(String username,String password){
+        User user=null;
+        try{
+            Connection conn=DBConnection.getConnection();
+            String sql="SELECT * FROM USER WHERE USERNAME=? AND PASSWORD=?";
+            PreparedStatement pre=conn.prepareStatement(sql);
+            pre.setString(1,username);
+            pre.setString(2,password);
+            ResultSet rs=pre.executeQuery();
+
+            if(rs.next()){
+                user=new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return user;
+
+
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
