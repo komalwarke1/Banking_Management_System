@@ -8,3 +8,11 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     name VARCHAR(100)
 );
+
+CREATE TABLE accounts(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    account_number VARCHAR(20) UNIQUE,
+    balance DOUBLE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
