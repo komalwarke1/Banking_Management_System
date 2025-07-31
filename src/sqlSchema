@@ -16,3 +16,12 @@ CREATE TABLE accounts(
     balance DOUBLE,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE transactions(
+     id INT PRIMARY KET AUTO_INCREMENT,
+     account_id INT,
+     type VARCHAR(10),
+     amount DOUBLE,
+     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     FOREIGN KEY (account_id) REFERENCES accounts(id)
+);
