@@ -1,13 +1,13 @@
 package model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Transaction {
     private int id;
     private int accountId;
     private String type;
     private double amount;
-    private Timestamp date;
+    private java.sql.Timestamp date;
 
     public int getId(){
         return id;
@@ -36,7 +36,8 @@ public class Transaction {
     public Timestamp getDate(){
         return date;
     }
-    public void setDate(Timestamp date){
+
+    public void setDate(java.sql.Timestamp date) {
         this.date=date;
     }
 }

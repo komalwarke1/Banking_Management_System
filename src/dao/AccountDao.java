@@ -25,7 +25,7 @@ public class AccountDao {
 
     }
 
-    public List<Account> getUserAccounts(int userId){
+    public static List<Account> getUserAccounts(int userId){
         List<Account> list=new ArrayList<>();
         try{
             Connection conn=DBConnection.getConnection();

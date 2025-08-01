@@ -30,7 +30,7 @@ public class User {
        this.id=id;
     }
 
-    public int getId() {
+    public static int getId() {
        return id;
     }
 }

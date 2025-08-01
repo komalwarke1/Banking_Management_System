@@ -39,7 +39,11 @@ public class DashboardFrame extends JFrame {
         });
 
 
-
+        JButton txnBtn = new JButton("Transactions");
+        txnBtn.addActionListener(e -> {
+            new TransactionFrame(user);
+        });
+        add(txnBtn);
 
 
 
