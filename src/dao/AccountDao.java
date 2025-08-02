@@ -36,7 +36,7 @@ public class AccountDao {
             while(rs.next()){
                 Account acc=new Account();
                 acc.setId(rs.getInt("id"));
-                acc.setUserid(rs.getInt("userid"));
+                acc.setUserid(rs.getInt("user_id"));
                 acc.setAccount_number(rs.getString("account_number"));
                 acc.setBalance(rs.getDouble("balance"));
                 list.add(acc);

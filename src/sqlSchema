@@ -1,3 +1,4 @@
+
 CREATE DATABASE bank_db;
 
 USE bank_db;
@@ -9,7 +10,7 @@ CREATE TABLE users (
     name VARCHAR(100)
 );
 
-CREATE TABLE accounts(
+CREATE TABLE accounts (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     account_number VARCHAR(20) UNIQUE,
@@ -17,11 +18,11 @@ CREATE TABLE accounts(
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE transactions(
-     id INT PRIMARY KET AUTO_INCREMENT,
-     account_id INT,
-     type VARCHAR(10),
-     amount DOUBLE,
-     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-     FOREIGN KEY (account_id) REFERENCES accounts(id)
+CREATE TABLE transactions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    account_id INT,
+    type VARCHAR(10),
+    amount DOUBLE,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES accounts(id)
 );

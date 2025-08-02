@@ -8,6 +8,7 @@ public class Transaction {
     private String type;
     private double amount;
     private java.sql.Timestamp date;
+    private Object dateTime;
 
     public int getId(){
         return id;
@@ -39,5 +40,9 @@ public class Transaction {
 
     public void setDate(java.sql.Timestamp date) {
         this.date=date;
+    }
+
+    public Object getDateTime() {
+        return dateTime;
     }
 }

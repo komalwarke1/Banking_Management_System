@@ -20,6 +20,12 @@ public class DashboardFrame extends JFrame {
         JButton createAccountBtn=new JButton("Create Account");
         add(createAccountBtn);
 
+        JButton txnBtn = new JButton("Transactions");
+        txnBtn.addActionListener(e -> {
+            new TransactionFrame(user);
+        });
+        add(txnBtn);
+
         createAccountBtn.addActionListener(e -> {
             String accNum=JOptionPane.showInputDialog(this,"Enter account number !");
             if(accNum!=null && !accNum.trim().isEmpty()){
@@ -37,13 +43,10 @@ public class DashboardFrame extends JFrame {
             }
 
         });
+        new TransactionHistoryUi(session.currentAccount);
 
 
-        JButton txnBtn = new JButton("Transactions");
-        txnBtn.addActionListener(e -> {
-            new TransactionFrame(user);
-        });
-        add(txnBtn);
+
 
 
 
