@@ -39,7 +39,7 @@ public class TransactionDao {
         List<Transaction> list=new ArrayList<>();
         try{
             Connection conn=DBConnection.getConnection();
-            String sql="SELECT * FROM TRANSACTIONS WHRERE ACCOUNT_ID=? ORDER BY DATE DESC";
+            String sql="SELECT * FROM TRANSACTIONS WHERE ACCOUNT_ID=? ORDER BY DATE DESC";
             PreparedStatement pre= conn.prepareStatement(sql);
             pre.setInt(1,accId);
             ResultSet rs=pre.executeQuery();

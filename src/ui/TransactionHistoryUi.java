@@ -1,5 +1,6 @@
 package ui;
 
+import dao.Session;
 import dao.TransactionDao;
 import model.Transaction;
 import javax.swing.*;
@@ -14,6 +15,12 @@ public class TransactionHistoryUi extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        if (accountNumber == null || accountNumber.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Invalid account number provided.");
+            dispose();
+            return;
+        }
+
         String cols[]={"ID","TYPE","AMOUNT","TABLE"};
         DefaultTableModel model=new DefaultTableModel(cols,0);
 
@@ -27,7 +34,12 @@ public class TransactionHistoryUi extends JFrame {
 
         add(scrollPane, BorderLayout.CENTER);
         setVisible(true);
-    }
 
+        if (!Session.isLoggedIn()) {
+            JOptionPane.showMessageDialog(null, "You must be logged in!");
+            return;
+        }
+        String account = Session.currentAccount;
+    }
 
 }

@@ -2,14 +2,17 @@ package ui;
 
 import dao.UserDao;
 import model.User;
+import dao.*;
+import ui.DashboardFrame;
 
 import javax.swing.*;
 import java.awt.GridLayout;
 
 public class LoginFrame extends JFrame {
-    private JTextField usernameField;
-    private JTextField passwordField;
-    private JButton loginBtn;
+    private final JTextField usernameField;
+    private final JTextField passwordField;
+    private Session session;
+    private String accountNumber;
 
     public LoginFrame(){
         setTitle("User login");
@@ -24,7 +27,7 @@ public class LoginFrame extends JFrame {
         passwordField=new JTextField();
         add(passwordField);
 
-        loginBtn=new JButton("loginBtn");
+        JButton loginBtn = new JButton("loginBtn");
         add(loginBtn);
 
         loginBtn.addActionListener(e->loginUser());
@@ -43,9 +46,11 @@ public class LoginFrame extends JFrame {
         }
         User user= UserDao.Login(username,password);
         if(user!=null){
-            JOptionPane.showMessageDialog(this,"Welcome "+user.getName()+"!");
-            dispose();
+            JOptionPane.showMessageDialog(this,"Welcome "+ User.getName()+"!");
+            Session.login(accountNumber);
             new DashboardFrame(user);
+            dispose();
+
         }else{
             JOptionPane.showMessageDialog(this,"Invalid credentials!");
         }

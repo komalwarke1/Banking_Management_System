@@ -3,11 +3,17 @@ package ui;
 import dao.AccountDao;
 import model.Account;
 import model.User;
+import dao.Session;
 
 import javax.swing.*;
 import java.awt.FlowLayout;
 
 public class DashboardFrame extends JFrame {
+    public Session session;
+
+    public DashboardFrame(Session session){
+        this.session=session;
+    }
     public DashboardFrame(User user) {
         setTitle("Dashboard -"+user.getName());
         setSize(500,400);
@@ -43,23 +49,15 @@ public class DashboardFrame extends JFrame {
             }
 
         });
-        new TransactionHistoryUi(session.currentAccount);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> {
+            Session.logout();
+            dispose();
+            new LoginFrame();
+        });
+        add(logoutButton);
+        Session.login("123456789"); // this must be a numeric string
+        new TransactionHistoryUi(Session.currentAccount);
 
 
 
