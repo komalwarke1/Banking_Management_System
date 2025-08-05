@@ -60,4 +60,33 @@ public class TransactionDao {
 
     }
 
+    public static List<Transaction> getTransactionsByAccount(String accountNumber) {
+        List<Transaction> list = new ArrayList<>();
+        try {
+            Connection conn = DBConnection.getConnection();
+
+            String sql = "SELECT t.id, t.account_id, t.amount, t.type, t.date " +
+                    "FROM transactions t JOIN accounts a ON t.account_id = a.id " +
+                    "WHERE a.account_number = ? ORDER BY t.date DESC";
+
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1, accountNumber);
+
+            ResultSet rs = pre.executeQuery();
+
+            while (rs.next()) {
+                Transaction t = new Transaction();
+                t.setId(rs.getInt("id"));
+                t.setAccountId(rs.getInt("account_id"));
+                t.setAmount(rs.getDouble("amount"));
+                t.setType(rs.getString("type"));
+                t.setDate(rs.getTimestamp("date"));
+                list.add(t);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

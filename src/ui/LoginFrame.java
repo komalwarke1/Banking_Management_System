@@ -44,14 +44,18 @@ public class LoginFrame extends JFrame {
             JOptionPane.showMessageDialog(this,"All fields are required");
             return;
         }
-        User user= UserDao.Login(username,password);
-        if(user!=null){
-            JOptionPane.showMessageDialog(this,"Welcome "+ User.getName()+"!");
-            Session.login(accountNumber);
-            new DashboardFrame(user);
-            dispose();
+        User user = UserDao.Login(username, password);
+        if (user != null) {
+            String accNum = AccountDao.getAccountNumberByUserId(user.getId());
+            if (accNum != null) {
+                Session.login(Session.getCurrentAccount());
+            }
 
-        }else{
+            JOptionPane.showMessageDialog(this, "Welcome, " + user.getName() + "!");
+            dispose();
+            new DashboardFrame(user);
+        }
+        else{
             JOptionPane.showMessageDialog(this,"Invalid credentials!");
         }
 

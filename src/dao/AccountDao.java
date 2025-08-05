@@ -24,6 +24,22 @@ public class AccountDao {
 
 
     }
+    public static String getAccountNumberByUserId(int userId) {
+        String accNum = null;
+        try {
+            Connection conn = DBConnection.getConnection();
+            String sql = "SELECT account_number FROM accounts WHERE user_id = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, userId);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                accNum = rs.getString("account_number");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return accNum;
+    }
 
     public static List<Account> getUserAccounts(int userId){
         List<Account> list=new ArrayList<>();

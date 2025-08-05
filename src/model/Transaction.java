@@ -45,4 +45,8 @@ public class Transaction {
     public Object getDateTime() {
         return dateTime;
     }
+
+    public Object getAccountNumber() {
+        return accountId;
+    }
 }
